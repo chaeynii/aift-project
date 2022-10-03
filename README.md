@@ -15,6 +15,7 @@
   기존의 git flow전략에서 3개의 브런치(main develop feature)만을 사용한 feature-branch사용
   
   -Feature-브랜치 전략
+  
     1. Main branch : 배포 브랜치로, 직접적인 push 절대불가
     2. Develop branch : 개인들이 브랜치를 만들어서 브랜치로 merge시키고 합쳐서 release해야할 때 main으로 이동
     3. Feature branch : 한 기능을 만들 때마다 새 브랜치 만들것이고 이를 develop으로 merge시키고 삭제시킴
