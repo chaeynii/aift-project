@@ -104,3 +104,4 @@ if __name__ == "__main__":
     agent.get_logger().info(agent.get_account_str())
     agent.get_logger().info('End PreStage')
     app.exec_()
+    
