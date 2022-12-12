@@ -11,13 +11,13 @@ if __name__ == "__main__":
     rt_kiwoom_ocx = RTKiwoom()
     agent = RTAgent(rt_kiwoom_ocx, config_manager=cm)
     if not agent.time_manager.is_today_open():
-        agent.get_logger().warning("Today is not a open day... will be terminated.")
+        agent.get_logger().warning("오늘은 장이 안열리는 날이라 종료됩니다.")
         sys.exit(0)
     elif not agent.time_manager.less_than_minutes_before_open(30):
-        agent.get_logger().warning("Now does not reach the open time - 30 minutes... will be terminated.")
+        agent.get_logger().warning("8시 30분이전이기 때문에 프로그램 종료됩니다.")
         sys.exit(0)
     elif TimeManager.get_now() > agent.time_manager.when_to_close():
-        agent.get_logger().warning("Now is after close time... will be terminated.")
+        agent.get_logger().warning("장이 종료되었기 때문에 프로그램 종료됩니다.")
         sys.exit(0)
 
     agent.get_logger().info('Start PreStage')
