@@ -66,17 +66,24 @@ class InputBuilder_BaselineModel:
     macd, macdsignal, macdhist = talib.MACD(df['close'])
     rsi = talib.RSI(df['close'], timeperiod=14)
     ad = talib.AD(df['high'], df['low'], df['close'], df['volume'])
+    real=talib.ADX(df['high'],df['low'],df['close'],timeperiod=14)
+    slowk,slowd=talib.STOCH(df['high'],df['low'],df['close'],fastk_period=5,slowk_period=3,slowk_matype=0,slowd_period=3,slowd_matype=0)
 
+    df['rsi'] = rsi
+    df['ad'] = ad
     df['ma'] = ma
     df['macd'] = macd
     df['macdsignal'] = macdsignal
     df['macdhist'] = macdhist
-    df['rsi'] = rsi
-    df['ad'] = ad
+    
+    df['disparity']=100*(df["open"]/df['ma'])
+    df['adx']=real
+    df['slowk']=slowk
+    df['slowd']=slowd
 
     df['offset_intra_day'] = ((df.index - df.index.floor('D') - pd.Timedelta('9h')).total_seconds()/(60*60*6.5)).values
     
-  def make_window_features(self, df: pd.DataFrame, cols=['ma', 'macd', 'macdsignal', 'macdhist', 'rsi', 'ad'], window_size=10):
+  def make_window_features(self, df: pd.DataFrame, cols=['ma', 'macd', 'macdsignal', 'macdhist', 'rsi', 'ad','disparity','adx','slowk','slowd'], window_size=10):
     """
     df가 변형됨: 과거 윈도우 동안의 평균값대비 현재 값의 차이를 계산
     """
