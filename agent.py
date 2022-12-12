@@ -12,10 +12,17 @@ from PyQt5.QtCore import *
 from queue import Queue
 from kiwoom_type import *
 import parser
+<<<<<<< HEAD
 #from action import ActionManager
 
 from log_class import *
 #from request import RequestBuilder
+=======
+from action import ActionManager
+
+from log_class import *
+from request import RequestBuilder
+>>>>>>> feature/other
 
 
 class MarketState(IntEnum):
@@ -135,7 +142,10 @@ class RecoveryManager():
     B): 금일 수신한 TR 분봉 데이터는 [Ymd090000, dt) 까지
     C): A + B 
     D): 리얼 데이터로 만든 분봉은 [dt, ) 전부
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/other
     최종 (매분): C + D
     """
     return self.get_time_manager().sprintf_timestamp(RecoveryState.END_WARMUP_TR_MINUTE_DATA)  
@@ -925,6 +935,7 @@ class RTAgent:
 
 if __name__ == "__main__":
   pass
+<<<<<<< HEAD
 
 
 
@@ -1181,3 +1192,5 @@ class RequestBuilder:
       stub = prediction_pb2_grpc.PredictorStub(channel)
       response = stub.Predict(self.__build())
     return dict(response.actions)
+=======
+>>>>>>> feature/other
